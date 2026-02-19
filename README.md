@@ -1,25 +1,25 @@
 # Web3 Music Pilot (GitHub Pages + BSC Testnet)
 
-Minimal full-stack pilot with:
-- Vite frontend (no backend)
-- Hardhat smart contract on BSC Testnet
-- Native tBNB license payments
-- In-browser Irys uploads (cover + audio + metadata.json)
+GitHub Pages pilot for a Web3 music platform with a Vite frontend (no backend) and a Hardhat smart contract on BSC Testnet.
+
+Live Pages target:
+- https://atraderdaoz.github.io/Run09.AI/
 
 ## Features
-1. Artist/User/Merchant subscription program (`role + tier + expiry`)
-2. Per-track POL license purchase (ERC-721 license token)
-3. Arweave upload flow through Irys in browser, then on-chain track registration
-4. Download gated by `(has license) OR (active User subscription)`
-5. Commercial status indicator from active Merchant subscription
-6. Optional CPM reporting stored on-chain by owner/oracle and readable from UI
+1. Artist/User/Merchant subscriptions (`role + tier + expiry`)
+2. POL per-track license purchase as ERC-721 using native tBNB
+3. In-browser Irys upload flow for cover, audio, and `metadata.json`, then on-chain track registration
+4. Download gating: user must hold track license OR have active User subscription
+5. Commercial status visible from active Merchant subscription
+6. Optional CPM reports stored on-chain and viewable/postable in UI
 
-## Project structure
+## Files
 - `contracts/MusicPilotPlatform.sol`
 - `scripts/deploy.js`
 - `hardhat.config.js`
 - `src/main.js`, `src/platform.js`, `src/irys.js`, `src/metadata.js`, `src/style.css`
 - `.github/workflows/deploy.yml`
+- `vite.config.js`, `.env.example`, `README.md`, `package.json`
 
 ## Setup
 ```bash
@@ -27,42 +27,42 @@ npm i
 cp .env.example .env
 ```
 
-Update `.env` values:
-- `PRIVATE_KEY`: funded BSC testnet account
-- `BSC_TESTNET_RPC_URL`: BSC testnet RPC
-- `VITE_PLATFORM_ADDRESS`: set after contract deployment
+Populate `.env`:
+- `BSC_TESTNET_RPC_URL` (BSC testnet RPC)
+- `PRIVATE_KEY` (testnet deployer key)
+- `VITE_PLATFORM_ADDRESS` (set after deploy)
 
-## Compile
+## Compile contract
 ```bash
 npm run compile
 ```
 
-## Deploy to BSC Testnet
+## Deploy contract (BSC Testnet)
 ```bash
 npm run deploy:bscTestnet
 ```
 
-If `PRIVATE_KEY` is missing, deploy script exits gracefully and prints instructions.
+Copy the deployed address into:
+- local `.env` as `VITE_PLATFORM_ADDRESS`
+- GitHub Actions secret `VITE_PLATFORM_ADDRESS`
 
-## Run app locally
+## Run frontend locally
 ```bash
 npm run dev
 ```
 
-## Build static app
+## Build frontend
 ```bash
 npm run build
 ```
 
-## GitHub Pages deployment
-1. Ensure `vite.config.js` uses `base: "/<REPO_NAME>/"` (this repo is `Run09.AI`, so base is `/Run09.AI/`).
-2. Deploy contract and copy address.
-3. In GitHub repo settings → **Secrets and variables → Actions**, add secret:
-   - `VITE_PLATFORM_ADDRESS` = deployed contract address
-4. Push to default branch (workflow in `.github/workflows/deploy.yml` runs build + Pages deploy).
-5. In GitHub repo settings → **Pages**, source should be **GitHub Actions**.
+## GitHub Pages configuration
+1. Keep Vite base as `"/Run09.AI/"` in `vite.config.js`.
+2. Add repository secret `VITE_PLATFORM_ADDRESS`.
+3. Push to `main` branch to trigger `.github/workflows/deploy.yml`.
+4. In GitHub repo settings → **Pages**, set Source to **GitHub Actions**.
 
 ## Notes
-- Owner account controls subscription assignment and CPM oracle config.
-- Artists must have active Artist subscription to register tracks.
-- UI expects MetaMask and BSC Testnet.
+- Only contract owner can set subscriptions and oracle.
+- Artist subscription is required for `registerTrack`.
+- UI expects MetaMask connected to BSC Testnet.

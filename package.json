@@ -4,10 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node -e \"console.log('Install vite to run dev server: npm i vite')\"",
-    "build": "node scripts/build.js",
-    "preview": "node -e \"console.log('Use any static server to preview dist/')\"",
-    "compile": "node scripts/compile.js",
-    "deploy:bscTestnet": "node scripts/deploy.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "compile": "hardhat compile",
+    "deploy:bscTestnet": "hardhat run scripts/deploy.js --network bscTestnet"
+  },
+  "dependencies": {
+    "@irys/sdk": "^0.2.11",
+    "ethers": "^6.13.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.15",
+    "vite": "^5.4.11"
   }
 }

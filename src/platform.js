@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export const PLATFORM_ABI = [
   "function setSubscription(address user,uint8 role,uint8 tier,uint64 expiresAt)",
   "function getSubscription(address user,uint8 role) view returns (tuple(uint8 tier,uint64 expiresAt))",
@@ -14,7 +16,7 @@ export const PLATFORM_ABI = [
 
 export async function connectWallet() {
   if (!window.ethereum) throw new Error("MetaMask not found");
-  const provider = new window.ethers.BrowserProvider(window.ethereum);
+  const provider = new ethers.BrowserProvider(window.ethereum);
   await provider.send("eth_requestAccounts", []);
   const signer = await provider.getSigner();
   return { provider, signer, address: await signer.getAddress() };
@@ -23,7 +25,7 @@ export async function connectWallet() {
 export function getPlatformContract(signerOrProvider) {
   const address = import.meta.env.VITE_PLATFORM_ADDRESS;
   if (!address) throw new Error("Missing VITE_PLATFORM_ADDRESS in env");
-  return new window.ethers.Contract(address, PLATFORM_ABI, signerOrProvider);
+  return new ethers.Contract(address, PLATFORM_ABI, signerOrProvider);
 }
 
 export function roleToEnum(role) {
