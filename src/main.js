@@ -1,5 +1,4 @@
 import "./style.css";
-import { ethers } from "ethers";
 import { connectWallet, getPlatformContract, roleToEnum } from "./platform.js";
 import { createIrysUploader, uploadFile, uploadJson } from "./irys.js";
 import { buildMetadata } from "./metadata.js";
@@ -114,7 +113,7 @@ $("uploadRegister").onclick = async () => {
     const metadataUri = await uploadJson(irys, metadata);
 
     setStatus("Registering track on-chain...");
-    const priceWei = ethers.parseEther($("price").value || "0");
+    const priceWei = window.ethers.parseEther($("price").value || "0");
     const tx = await state.contract.registerTrack(coverUri, audioUri, metadataUri, priceWei);
     const receipt = await tx.wait();
 

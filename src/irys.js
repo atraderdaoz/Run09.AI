@@ -1,9 +1,10 @@
-import { WebIrys } from "@irys/sdk";
-
 export async function createIrysUploader() {
   if (!window.ethereum) throw new Error("MetaMask required for Irys upload");
 
-  const irys = new WebIrys({
+  const IrysCtor = window.WebIrys || window.Irys || window.IrysWeb;
+  if (!IrysCtor) throw new Error("Irys SDK not loaded");
+
+  const irys = new IrysCtor({
     network: "testnet",
     token: "bnb",
     wallet: { provider: window.ethereum },
