@@ -13,11 +13,12 @@ fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 fs.mkdirSync(path.join(dist, "src"), { recursive: true });
 
-const html = fs.readFileSync("index.html", "utf8").replace('/src/main.js', './src/main.js');
 const envAddress = process.env.VITE_PLATFORM_ADDRESS || "";
+const buildId = process.env.BUILD_ID || String(Date.now());
 const html = fs
   .readFileSync("index.html", "utf8")
-  .replace("__VITE_PLATFORM_ADDRESS__", envAddress);
+  .replace("__VITE_PLATFORM_ADDRESS__", envAddress)
+  .replace("__BUILD_ID__", buildId);
 fs.writeFileSync(path.join(dist, "index.html"), html);
 
 for (const f of ["main.js", "platform.js", "irys.js", "metadata.js", "style.css"]) {

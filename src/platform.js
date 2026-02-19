@@ -23,8 +23,8 @@ export async function connectWallet() {
 }
 
 export function getPlatformContract(signerOrProvider) {
-  const address = import.meta.env.VITE_PLATFORM_ADDRESS;
-  if (!address) throw new Error("Missing VITE_PLATFORM_ADDRESS in env");
+  const address = ((import.meta && import.meta.env && import.meta.env.VITE_PLATFORM_ADDRESS) || window.VITE_PLATFORM_ADDRESS || "").trim();
+  if (!address || address === "__VITE_PLATFORM_ADDRESS__") throw new Error("Missing VITE_PLATFORM_ADDRESS in env");
   return new window.ethers.Contract(address, PLATFORM_ABI, signerOrProvider);
 }
 

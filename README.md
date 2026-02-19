@@ -80,3 +80,7 @@ For GitHub Actions, keep passing `VITE_PLATFORM_ADDRESS` in the workflow env as 
 
 ## Repository scope
 This repository intentionally tracks only the Web3 Music Pilot implementation assets and deployment files.
+
+
+## Cache busting
+Fallback builds append a `?v=<build-id>` query to `src/main.js` so GitHub Pages clients pull fresh JS after deploy. If you still see old behavior, hard refresh once (Ctrl/Cmd+Shift+R).
