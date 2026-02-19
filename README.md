@@ -66,3 +66,17 @@ npm run build
 - Only contract owner can set subscriptions and oracle.
 - Artist subscription is required for `registerTrack`.
 - UI expects MetaMask connected to BSC Testnet.
+
+## Fallback build address injection
+When running the fallback build (`node scripts/build.js`), `VITE_PLATFORM_ADDRESS` is injected into `dist/index.html` by replacing `__VITE_PLATFORM_ADDRESS__`.
+
+For GitHub Actions, keep passing `VITE_PLATFORM_ADDRESS` in the workflow env as already configured.
+
+## Troubleshooting blank screen
+- If the page is blank, open browser DevTools and check for startup errors in `src/main.js`.
+- Ensure `VITE_PLATFORM_ADDRESS` is set (or injected in fallback build) to avoid missing contract config at runtime.
+- Verify you are loading from the repo subpath URL: `https://atraderdaoz.github.io/Run09.AI/`.
+
+
+## Repository scope
+This repository intentionally tracks only the Web3 Music Pilot implementation assets and deployment files.
