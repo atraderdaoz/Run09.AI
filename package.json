@@ -1,0 +1,13 @@
+{
+  "name": "run09-ai-music-pilot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node -e \"console.log('Install vite to run dev server: npm i vite')\"",
+    "build": "node scripts/build.js",
+    "preview": "node -e \"console.log('Use any static server to preview dist/')\"",
+    "compile": "node scripts/compile.js",
+    "deploy:bscTestnet": "node scripts/deploy.js"
+  }
+}
