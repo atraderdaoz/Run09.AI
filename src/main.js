@@ -60,7 +60,10 @@ const state = { signer: null, address: null, contract: null, currentTrack: null 
 const $ = (id) => document.getElementById(id);
 const setStatus = (msg) => ($("status").textContent = msg);
 
-$("contractAddr").textContent = ((((import.meta && import.meta.env && import.meta.env.VITE_PLATFORM_ADDRESS) || window.VITE_PLATFORM_ADDRESS || "").trim()) || "(missing VITE_PLATFORM_ADDRESS)");
+const envAddress = (import.meta?.env && import.meta.env.VITE_PLATFORM_ADDRESS) || "";
+$("contractAddr").textContent = envAddress || "(missing VITE_PLATFORM_ADDRESS)";
+
+
 const envAddress = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_PLATFORM_ADDRESS) || window.VITE_PLATFORM_ADDRESS || "";
 $("contractAddr").textContent = envAddress || "(missing VITE_PLATFORM_ADDRESS)";
 

@@ -13,6 +13,7 @@ fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 fs.mkdirSync(path.join(dist, "src"), { recursive: true });
 
+const html = fs.readFileSync("index.html", "utf8").replace('/src/main.js', './src/main.js');
 const envAddress = process.env.VITE_PLATFORM_ADDRESS || "";
 const html = fs
   .readFileSync("index.html", "utf8")
