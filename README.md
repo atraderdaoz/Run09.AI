@@ -76,3 +76,7 @@ For GitHub Actions, keep passing `VITE_PLATFORM_ADDRESS` in the workflow env as 
 - If the page is blank, open browser DevTools and check for startup errors in `src/main.js`.
 - Ensure `VITE_PLATFORM_ADDRESS` is set (or injected in fallback build) to avoid missing contract config at runtime.
 - Verify you are loading from the repo subpath URL: `https://atraderdaoz.github.io/Run09.AI/`.
+
+
+## Repository scope
+This repository intentionally tracks only the Web3 Music Pilot implementation assets and deployment files.
