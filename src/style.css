@@ -1,0 +1,52 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #e8eefc;
+  background: #0f1420;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+h1, h2 {
+  margin: 0.4rem 0;
+}
+
+section {
+  border: 1px solid #28395d;
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin: 0.9rem 0;
+  background: #151d2f;
+}
+
+input, textarea, select, button {
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0;
+  padding: 0.55rem;
+  box-sizing: border-box;
+}
+
+button {
+  background: #386df8;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+
+pre, code {
+  background: #0e1628;
+  padding: 0.5rem;
+  overflow: auto;
+}
+
+a {
+  color: #77a3ff;
+}
