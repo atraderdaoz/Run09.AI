@@ -64,6 +64,9 @@ const envAddress = (import.meta?.env && import.meta.env.VITE_PLATFORM_ADDRESS) |
 $("contractAddr").textContent = envAddress || "(missing VITE_PLATFORM_ADDRESS)";
 
 
+const envAddress = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_PLATFORM_ADDRESS) || window.VITE_PLATFORM_ADDRESS || "";
+$("contractAddr").textContent = envAddress || "(missing VITE_PLATFORM_ADDRESS)";
+
 $("connect").onclick = async () => {
   try {
     const { signer, address } = await connectWallet();
